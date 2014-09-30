@@ -1,4 +1,4 @@
 CivnqApi::Application.routes.draw do
-  resource :matches
+  resources :matches
 end
 
