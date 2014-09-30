@@ -6,5 +6,6 @@ gem 'rails-api'
 gem 'mongoid'
 
 group :development, :test do
+  gem 'byebug'
   gem 'rspec-rails'
 end

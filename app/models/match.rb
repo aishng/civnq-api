@@ -2,9 +2,9 @@ class Match
   include Mongoid::Document
 
   field :reporter_id,     type: Integer
-  field :teams,           type: Hash
+  field :teams,           type: Array
   field :comment,         type: String
-  field :type,            type: Integer
-  field :game,            type: Integer
+  field :type,            type: String
+  field :game,            type: String
 
 end
