@@ -9,3 +9,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
 end
+
+group :test do
+  gem 'database_cleaner'
+end
