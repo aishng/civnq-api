@@ -4,12 +4,13 @@ class MatchesController < ApplicationController
   end
 
   def create
-    match_type = 0
-    if params["match"]["type"] == "FFA"
-      match_type = 1
-    end
-    match = Match.new(teams: params["match"]["teams"], type: match_type, game: params["match"]["game"])
+    match_type  = Match::MatchType.const_get(params["match"]["type"])
+    game        = Match::GameType.const_get(params["match"]["game"])
+
+    match = Match.new(teams: params["match"]["teams"], type: match_type, game: game)
+
     match.save
+
     render json: match
   end
 end
