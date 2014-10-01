@@ -10,7 +10,6 @@ class MatchesController < ApplicationController
     end
     match = Match.new(teams: params["match"]["teams"], type: match_type, game: params["match"]["game"])
     match.save
-    byebug
     render json: match
   end
 end
