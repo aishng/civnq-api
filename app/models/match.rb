@@ -4,7 +4,7 @@ class Match
   field :reporter_id,     type: Integer
   field :teams,           type: Array
   field :comment,         type: String
-  field :type,            type: Integer
+  field :match_type,      type: Integer
   field :game,            type: Integer
 
   module MatchType
