@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.3'
 gem 'rails-api'
 gem 'mongoid'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug'
