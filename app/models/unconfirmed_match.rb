@@ -4,6 +4,7 @@ class UnconfirmedMatch
 
   store_in collection: "unconfirmed_matches"
 
+
   def self.validate(params)
     return false if not params[:game].is_a? Integer
     return false if not params[:match_type].is_a? Integer
@@ -11,7 +12,7 @@ class UnconfirmedMatch
     return false if params[:teams].length >= 11
     return false if params[:teams].any? { |team|
       team.any? { |player|
-        player.is_a? String
+        not player.is_a? String
       }
     }
     return false if not params[:comment].is_a? String
