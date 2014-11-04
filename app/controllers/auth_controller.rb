@@ -13,7 +13,7 @@ class AuthController < ApplicationController
       }
       user.username = JSON.parse(res.body)["response"]["players"][0]["personaname"]
     end
-    render json: user
+    redirect_to "http://localhost:9000"
   end
 
 end
