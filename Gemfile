@@ -5,6 +5,7 @@ gem 'rails', '4.0.3'
 gem 'rails-api'
 gem 'mongoid'
 gem 'active_model_serializers'
+gem 'omniauth-steam'
 
 group :development, :test do
   gem 'byebug'

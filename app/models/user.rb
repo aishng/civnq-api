@@ -1,6 +1,10 @@
 class User
   include Mongoid::Document
 
-  field :steam_token,     type: Integer
-  field :username,        type: String
+  def self.strip_id(url)
+    url.split("/").last.to_i
+  end
+
+  field :steamid,       type: Integer
+  field :username,      type: String
 end

@@ -7,12 +7,22 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require 'omniauth-openid'
+require 'openid/store/filesystem'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
 module CivnqApi
   class Application < Rails::Application
+    config.middleware.use Rack::Session::Cookie
+    config.middleware.use OmniAuth::Strategies::OpenID, :store => OpenID::Store::Filesystem.new('/tmp')
+
+    config.middleware.use OmniAuth::Builder do
+      provider :steam, ENV['STEAM_WEB_API_KEY']
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
