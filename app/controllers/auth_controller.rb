@@ -15,6 +15,7 @@ class AuthController < ApplicationController
           http.request(req)
       }
       user.username = JSON.parse(res.body)["response"]["players"][0]["personaname"]
+      user.save!
     end
 
     #set session
