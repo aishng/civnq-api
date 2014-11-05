@@ -21,4 +21,16 @@ class UnconfirmedMatchesController < ApplicationController
   def index
     render json: UnconfirmedMatch.all
   end
+
+
+  def reject
+    if UnconfirmedMatch.where(id: params[:id]).exists?
+      unconfirmed_match = UnconfirmedMatch.find(params[:id])
+      unconfirmed_match.delete
+      RejectedMatch.create(unconfirmed_match.attributes)
+      render json: {}
+    else
+      raise ArgumentError
+    end
+  end
 end

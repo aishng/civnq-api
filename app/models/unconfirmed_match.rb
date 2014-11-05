@@ -12,7 +12,7 @@ class UnconfirmedMatch
     return false if params[:teams].length >= 11
     return false if params[:teams].any? { |team|
       team.any? { |player|
-        not player.is_a? String
+        player.is_a? String
       }
     }
     return false if not params[:comment].is_a? String
