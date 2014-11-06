@@ -2,6 +2,24 @@ require 'spec_helper'
 
 describe UnconfirmedMatch do
 
+  describe ".confirm_matches" do
+    subject             { UnconfirmedMatch.confirm_matches }
+    describe "for a standard case of confirmed matches" do
+      before(:each) do
+        UnconfirmedMatch.create
+        UnconfirmedMatch.first.update(created_at: Time.now - 4.days)
+        UnconfirmedMatch.create
+      end
+
+      it {
+        subject
+        UnconfirmedMatch.count.should == 1
+        ConfirmedMatch.count.should == 1
+      }
+    end
+  end
+
+
   describe ".validate" do
     subject             { UnconfirmedMatch.validate(params) }
     let(:params)        { { game: game, match_type: match_type, teams: teams, comment: comment } }
