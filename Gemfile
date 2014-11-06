@@ -6,6 +6,7 @@ gem 'rails-api'
 gem 'mongoid'
 gem 'active_model_serializers'
 gem 'omniauth-steam'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'byebug'

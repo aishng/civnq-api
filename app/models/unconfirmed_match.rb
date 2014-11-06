@@ -1,8 +1,16 @@
 class UnconfirmedMatch
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
   include Match
 
   store_in collection: "unconfirmed_matches"
+
+
+  def self.confirm_matches
+    old_matches = UnconfirmedMatch.where(:created_at.lte => (Time.now - 1.second))
+    new_matches = old_matches.map { |match| ConfirmedMatch.create(match.attributes) }
+    old_matches.map { |match| match.delete }
+  end
 
 
   def self.validate(params)
@@ -12,7 +20,7 @@ class UnconfirmedMatch
     return false if params[:teams].length >= 11
     return false if params[:teams].any? { |team|
       team.any? { |player|
-        not player.is_a? String
+        player.is_a? String
       }
     }
     return false if not params[:comment].is_a? String
